@@ -1,4 +1,4 @@
-export type ProviderId = 'anthropic' | 'openai' | 'google'
+export type ProviderId = 'anthropic' | 'openai' | 'google' | 'qwen' | 'kimi'
 
 export interface ChatMessage {
   id: string
@@ -32,14 +32,14 @@ export interface Project {
   createdAt: number
 }
 
-export interface ProviderKeys {
-  anthropic: string
-  openai: string
-  google: string
-}
+export type ProviderKeys = Record<ProviderId, string>
+
+/** Per-provider API base URL override, e.g. a region-specific endpoint or a proxy. Empty string means "use the adapter's default". */
+export type ProviderBaseUrls = Record<ProviderId, string>
 
 export interface AppState {
   apiKeys: ProviderKeys
+  baseUrls: ProviderBaseUrls
   projects: Project[]
   conversations: Conversation[]
   activeConversationId: string | null

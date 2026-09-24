@@ -1,15 +1,19 @@
 import { readSSE } from '../sse'
 import { ProviderLimitError, type ProviderAdapter, type StreamChatParams } from './types'
 
+const DEFAULT_BASE_URL = 'https://api.anthropic.com'
+
 async function streamChat({
   apiKey,
   model,
+  baseUrl,
   systemPrompt,
   messages,
   signal,
   onDelta,
 }: StreamChatParams): Promise<void> {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
+  const base = (baseUrl || DEFAULT_BASE_URL).replace(/\/+$/, '')
+  const response = await fetch(`${base}/v1/messages`, {
     method: 'POST',
     signal,
     headers: {
@@ -56,6 +60,7 @@ export const anthropicAdapter: ProviderAdapter = {
   id: 'anthropic',
   label: 'Anthropic (Claude)',
   helpUrl: 'https://console.anthropic.com/settings/keys',
+  defaultBaseUrl: DEFAULT_BASE_URL,
   defaultModel: 'claude-sonnet-5',
   modelSuggestions: ['claude-opus-5-5', 'claude-sonnet-5', 'claude-fable-5-1', 'claude-haiku-4-5-20251001'],
   streamChat,

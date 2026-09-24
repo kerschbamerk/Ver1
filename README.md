@@ -1,10 +1,10 @@
 # AI Hub
 
 Eine Chat-Oberfläche im Stil von Claude, die zwischen mehreren KI-Anbietern
-(Anthropic Claude, OpenAI ChatGPT, Google Gemini) wechseln kann, ohne den
-laufenden Chatverlauf zu verlieren. Praktisch, wenn bei einem Anbieter ein
-Nutzungslimit erreicht wird: einfach auf einen anderen Anbieter umschalten
-und mit vollem Kontext weiterarbeiten.
+(Anthropic Claude, OpenAI ChatGPT, Google Gemini, Alibaba Qwen, Moonshot
+Kimi) wechseln kann, ohne den laufenden Chatverlauf zu verlieren. Praktisch,
+wenn bei einem Anbieter ein Nutzungslimit erreicht wird: einfach auf einen
+anderen Anbieter umschalten und mit vollem Kontext weiterarbeiten.
 
 ## Funktionsumfang
 
@@ -32,6 +32,13 @@ einen API-Key zu hinterlegen:
 - Anthropic: https://console.anthropic.com/settings/keys
 - OpenAI: https://platform.openai.com/api-keys
 - Google: https://aistudio.google.com/apikey
+- Qwen (Alibaba): https://www.alibabacloud.com/help/en/model-studio/get-api-key
+- Kimi (Moonshot AI): https://platform.moonshot.ai/console/api-keys
+
+Qwen und Kimi sind primär auf internationale Endpunkte eingestellt. Falls dein
+Account auf der China-Plattform liegt, trag in den Einstellungen bei "Basis-URL"
+den jeweiligen Mainland-Endpunkt ein (steht als Kommentar in
+`src/lib/providers/qwen.ts` bzw. `kimi.ts`).
 
 ## Build
 

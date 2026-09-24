@@ -68,6 +68,7 @@ export function useChatActions() {
       await adapter.streamChat({
         apiKey,
         model,
+        baseUrl: state.baseUrls[provider] || undefined,
         systemPrompt: project?.instructions,
         messages: history.map((m) => ({ role: m.role, content: m.content })),
         signal: controller.signal,

@@ -8,6 +8,8 @@ export interface PlainMessage {
 export interface StreamChatParams {
   apiKey: string
   model: string
+  /** overrides the adapter's default API base URL, e.g. a region endpoint or proxy */
+  baseUrl?: string
   systemPrompt?: string
   messages: PlainMessage[]
   signal: AbortSignal
@@ -23,5 +25,7 @@ export interface ProviderAdapter {
   helpUrl: string
   defaultModel: string
   modelSuggestions: string[]
+  /** shown as the placeholder for the optional base-URL override in Settings */
+  defaultBaseUrl: string
   streamChat(params: StreamChatParams): Promise<void>
 }

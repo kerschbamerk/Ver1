@@ -60,6 +60,14 @@ export default function SettingsModal({ onClose }: { onClose: () => void }) {
                     {show ? <EyeOff size={15} /> : <Eye size={15} />}
                   </button>
                 </div>
+                <input
+                  value={state.baseUrls[id]}
+                  onChange={(e) => dispatch({ type: 'SET_BASE_URL', provider: id, url: e.target.value })}
+                  placeholder={`Basis-URL (Standard: ${adapter.defaultBaseUrl})`}
+                  autoComplete="off"
+                  spellCheck={false}
+                  className="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600 outline-none focus:border-purple-500 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-300"
+                />
               </div>
             )
           })}

@@ -1,15 +1,19 @@
 import { readSSE } from '../sse'
 import { ProviderLimitError, type ProviderAdapter, type StreamChatParams } from './types'
 
+const DEFAULT_BASE_URL = 'https://generativelanguage.googleapis.com'
+
 async function streamChat({
   apiKey,
   model,
+  baseUrl,
   systemPrompt,
   messages,
   signal,
   onDelta,
 }: StreamChatParams): Promise<void> {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(
+  const base = (baseUrl || DEFAULT_BASE_URL).replace(/\/+$/, '')
+  const url = `${base}/v1beta/models/${encodeURIComponent(
     model,
   )}:streamGenerateContent?alt=sse&key=${encodeURIComponent(apiKey)}`
 
@@ -54,6 +58,7 @@ export const googleAdapter: ProviderAdapter = {
   id: 'google',
   label: 'Google (Gemini)',
   helpUrl: 'https://aistudio.google.com/apikey',
+  defaultBaseUrl: DEFAULT_BASE_URL,
   defaultModel: 'gemini-2.5-pro',
   modelSuggestions: ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.0-flash'],
   streamChat,

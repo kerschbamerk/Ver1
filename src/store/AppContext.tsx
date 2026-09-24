@@ -6,6 +6,7 @@ import type { AppState, ChatMessage, Conversation, Project, ProviderId } from '.
 
 type Action =
   | { type: 'SET_API_KEY'; provider: ProviderId; key: string }
+  | { type: 'SET_BASE_URL'; provider: ProviderId; url: string }
   | { type: 'NEW_CONVERSATION'; projectId: string | null; provider: ProviderId; model: string }
   | { type: 'DELETE_CONVERSATION'; id: string }
   | { type: 'RENAME_CONVERSATION'; id: string; title: string }
@@ -23,6 +24,9 @@ function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
     case 'SET_API_KEY':
       return { ...state, apiKeys: { ...state.apiKeys, [action.provider]: action.key } }
+
+    case 'SET_BASE_URL':
+      return { ...state, baseUrls: { ...state.baseUrls, [action.provider]: action.url } }
 
     case 'NEW_PROJECT':
       return { ...state, projects: [action.project, ...state.projects] }

@@ -8,6 +8,8 @@ const providerDotColor: Record<ProviderId, string> = {
   anthropic: 'bg-orange-500',
   openai: 'bg-emerald-500',
   google: 'bg-blue-500',
+  qwen: 'bg-violet-500',
+  kimi: 'bg-teal-500',
 }
 
 export default function ProviderSwitcher({ conversation }: { conversation: Conversation }) {
