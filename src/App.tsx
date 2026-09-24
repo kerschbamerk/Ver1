@@ -9,7 +9,15 @@ function App() {
   const [settingsOpen, setSettingsOpen] = useState(() => !Object.values(state.apiKeys).some(Boolean))
 
   return (
-    <div className="flex h-screen w-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div
+      className="flex h-dvh w-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100"
+      style={{
+        paddingTop: 'env(safe-area-inset-top)',
+        paddingBottom: 'env(safe-area-inset-bottom)',
+        paddingLeft: 'env(safe-area-inset-left)',
+        paddingRight: 'env(safe-area-inset-right)',
+      }}
+    >
       <Sidebar onOpenSettings={() => setSettingsOpen(true)} />
       <ChatView />
       {settingsOpen && <SettingsModal onClose={() => setSettingsOpen(false)} />}

@@ -9,21 +9,37 @@ html,
 body,
 #root {
   height: 100%;
+  overscroll-behavior: none;
 }
 
 body {
   margin: 0;
+  background: #fff;
   font-family:
     system-ui,
     -apple-system,
     'Segoe UI',
     Roboto,
     sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #020617;
+  }
 }
 
 * {
   scrollbar-width: thin;
   scrollbar-color: rgb(148 163 184 / 0.4) transparent;
+}
+
+/* iOS/iPadOS Safari zooms the page in on focus of any input under 16px */
+input,
+textarea,
+select {
+  font-size: 16px !important;
 }
 
 .markdown p {
